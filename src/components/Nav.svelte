@@ -1,60 +1,27 @@
 <script>
 	export let segment;
+	export let isSidebar = false
 </script>
 
 <style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
+	header {
+		background-color: #fafafa
 	}
-
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-
-	li {
-		display: block;
-		float: left;
-	}
-
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
-
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
+	#cover{
+		height: 2em;
 	}
 </style>
 
-<nav>
-	<ul>
-		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>home</a></li>
-		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='about'>about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='blog'>blog</a></li>
-	</ul>
-</nav>
+<header class="navbar p-2">
+  <section class="navbar-section">
+    <a href='.' aria-current='{segment === undefined ? "page" : undefined}' class="navbar-brand mr-2">
+			<img src="logo.svg" alt="JulianC" id='cover'>
+		</a>
+  </section>
+  <section class="navbar-section pr-2">
+		
+		<a href='javascript.void(0)' on:click|preventDefault>
+			<i class="icon {isSidebar ? 'icon-cross' : 'icon-menu'} icon-2x"></i>
+		</a>
+  </section>
+</header>
